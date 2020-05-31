@@ -9,12 +9,17 @@
   .SearchBar input {
     width: 287px;
     padding: .88rem 0;
-    border: 1px solid #fff;
-    border-radius: 3px;
+    border: 1px solid grey;
+    border-radius: 20px;
     margin-bottom: 2.22rem;
-    color: #010c3f;
     text-align: center;
     font-size: 1rem;
+    background-color: white;
+    color: black;
+  }
+  
+  .SearchBar input:hover {
+    background-color: rgb(211, 211, 211);
   }
   
   .SearchBar input:focus {
