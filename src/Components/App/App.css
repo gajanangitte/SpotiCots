@@ -54,6 +54,8 @@ h1 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.88rem;
   color: rgb(0, 255, 13);
+  border-bottom: solid 3px white;
+  border-top: solid 1px white;
 }
 
 h1 .highlight {
@@ -88,4 +90,12 @@ h2 {
     align-items: center;
     flex-direction: column;
   }
+}
+
+h1 img {
+  padding-right : 10px;
+  margin: 0;
+  height: 40px;
+  width: 40px;
+  align-self: bottom;
 }
