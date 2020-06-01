@@ -1,6 +1,6 @@
 const clientId = '19320e54eadf4442b2e7d2b70a0fbc82';
 // const redirectURI = 'http://localhost:3000'
-const redirectURI = 'http://spoti-cots_by_apriocot.surge.sh';
+const redirectURI = 'http://spoti-cots_by_apricot.surge.sh';
 
 let userAccessToken;
 let Spotify = {
