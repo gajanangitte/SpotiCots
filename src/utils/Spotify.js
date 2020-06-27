@@ -1,6 +1,6 @@
 const clientId = '19320e54eadf4442b2e7d2b70a0fbc82';
-// const redirectURI = 'http://localhost:3000'
-const redirectURI = 'http://spoti-cots_by_apricot.surge.sh';
+const redirectURI = 'http://localhost:3000/'
+// const redirectURI = 'http://spoti-cots_by_apricot.surge.sh';
 
 let userAccessToken;
 let Spotify = {
@@ -30,29 +30,74 @@ let Spotify = {
         }
     },
 
-    search(term) {
+    search(term, type) {
         const accessToken = Spotify.getAccessToken();
-        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`,
-        {
-            headers: { Authorization: `Bearer ${accessToken}`}
-        }).then( response => {
-            return response.json();
-        }).then( jsonResponse => {
-            if(!jsonResponse.tracks) {
-                return [];
-            }
+        console.log(accessToken);
 
-            return jsonResponse.tracks.items.map( track => {
-                return {
-                    id: track.id,
-                    name: track.name,
-                    artist: track.artists[0].name,
-                    album: track.album.name,
-                    uri: track.uri, 
-                }
-            })
-        });
-    } , 
+        if(type === 'track')
+        {
+            return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${term}`,
+            {
+                headers: { Authorization: `Bearer ${accessToken}`}
+            }).then( response => {
+                // console.log(response);
+                return response.json();
+            }).then( jsonResponse => {
+                    // console.log(jsonResponse);
+                    if(!jsonResponse.tracks) {
+                    return [];
+                    }
+                
+                    return jsonResponse.tracks.items.map( track => {
+                    return {
+                        id: track.id,
+                        name: track.name,
+                        artist: track.artists[0].name,
+                        album: track.album.name,
+                        uri: track.uri, 
+                        }
+                    });
+                
+            });
+        };
+
+        if(type === 'artist') {
+
+           return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${term}`,
+            {
+                headers: { Authorization: `Bearer ${accessToken}`}
+            }).then( response => {
+                return response.json();
+            }).then( jsonResponse => {
+                
+                    if(!jsonResponse.artists) {
+                    return [];
+                    }
+                
+                    let artistID = jsonResponse.artists.items[0].uri;
+                    let artistURI = artistID.split(':');
+                    // console.log(artistURI);
+
+                    console.log(accessToken);
+                    return fetch(`https://api.spotify.com/v1/artists/`+artistURI[2]+`/top-tracks?country=IN`,
+                     {
+                        headers: { Authorization: `Bearer ${accessToken}`}
+                    }).then ( response2 => {
+                        return response2.json();
+
+                        }).then( responseJSON => {
+
+                            if(!responseJSON.tracks) {
+                                return [];
+                            }
+
+
+
+                        })
+            });
+        };
+
+    }, 
      savePlaylist(name , trackURIs) {
 
         if(!name || !trackURIs.length) {
