@@ -19,6 +19,10 @@
     background-color: white;
     color: black;
     width: 50%;
+    animation-name: blink;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    opacity: 1;
   }
   
   .SearchBar input:hover {
@@ -78,3 +82,8 @@
     background-color: rgba(108, 65, 233, .7);
   }
 
+  @media only screen and (max-width:450px) {
+    #term {
+      display: none;
+    }
+  } 

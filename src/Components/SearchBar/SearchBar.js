@@ -2,7 +2,7 @@ import React from 'react';
 import './SearchBar.css';
 import './SearchBar.scss';
 import ReactNotification from 'react-notifications-component';
-
+import Input from 'react-fancy-input'
 
 export class SearchBar extends React.Component {
 
@@ -48,10 +48,15 @@ export class SearchBar extends React.Component {
     }
 
     render() {
+
+      let placeholders = ["Search a Song...", "Search an Artist...", "Search an Album..."]
         return (
         <div className="SearchBar" id="SearchBar">
-          <strong> Search Term: </strong><br/>
-        <input placeholder="Search" onChange={this.handleTermChange}  onKeyPress={this.searchPress}/>
+          
+          <strong id="term"> Search Term: </strong><br/>
+          
+        
+        <Input texts={placeholders} placeholder="Search" onChange={this.handleTermChange}  onKeyPress={this.searchPress}/>
            <strong> Search Type: </strong>
         <form>    
           <div className="radio-group">

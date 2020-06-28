@@ -11,6 +11,7 @@
     "react": "^16.13.1",
     "react-blink-text": "^1.0.5",
     "react-dom": "^16.13.1",
+    "react-fancy-input": "^1.0.1",
     "react-notifications-component": "^2.4.0",
     "react-scripts": "3.4.1",
     "sass": "^1.26.9"
@@ -39,5 +40,9 @@
   "devDependencies": {
     "git-scripts": "^0.4.3",
     "surge": "^0.21.3"
+  }, "git": {
+    "scripts": {
+      "pre-push": "surge --project ./ --domain spoti-cots_by_apricot.surge.sh"
+    }
   }
 }

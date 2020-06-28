@@ -66,3 +66,26 @@
       height: 600px;
     }
   }
+
+  @media only screen and (max-width: 400px) {
+              .Playlist::-webkit-scrollbar-track
+            {
+              border: 0px transparent;
+              border-color: black;
+              background-color: #b2bec3;
+            }
+            
+            .Playlist::-webkit-scrollbar
+            {
+              width: 10px;
+              background-color: #dfe6e9;
+              display: none;
+            }
+            
+            .Playlist::-webkit-scrollbar-thumb
+            {
+              display: none; 
+            }
+  }
+
+  

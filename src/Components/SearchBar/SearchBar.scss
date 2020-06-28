@@ -1,7 +1,7 @@
 $bg:  rgba(108, 65, 233, .7);
 $fg: lighten($bg,20%);
 $borderWidth: 3px;
-
+$mbc: rgb(30, 255, 0);
 
 input[type=radio] {
   position: absolute;
@@ -33,6 +33,22 @@ label + input[type=radio] + label {
   border-radius: 10px;
   overflow: hidden;
   padding: 8px;
+}
+
+@media only screen and (max-width: 440px) {
+   .radio-group {
+     border: solid $mbc;
+     border-radius: 10px;
+   } 
+
+   label + input[type=radio] + label {
+    border-left: solid $borderWidth $mbc;
+  }
+
+  input[type=radio]:checked + label {
+    border-left: solid $borderWidth $mbc;
+  }
+    
 }
 
 
