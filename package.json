@@ -9,6 +9,7 @@
     "animate.css": "^4.1.0",
     "animate.css-react": "^1.0.0",
     "react": "^16.13.1",
+    "react-blink-text": "^1.0.5",
     "react-dom": "^16.13.1",
     "react-notifications-component": "^2.4.0",
     "react-scripts": "3.4.1",
@@ -38,10 +39,5 @@
   "devDependencies": {
     "git-scripts": "^0.4.3",
     "surge": "^0.21.3"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "surge --project ./ --domain example-githooks.surge.sh"
-    }
- }
+  }
 }
