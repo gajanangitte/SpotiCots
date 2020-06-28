@@ -7,14 +7,66 @@
     box-shadow: 0 4px 2px 2px #000000;
   }
   
-  ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
+  .SearchResults::-webkit-scrollbar-track
+  {
+    border: 3px solid white;
+    border-color: black;
+    background-color: #b2bec3;
   }
   
+  .SearchResults::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #dfe6e9;
+  }
+  
+  .SearchResults::-webkit-scrollbar-thumb
+  {
+    background-color: rgba(213, 2, 255, 0.658);    /* color of the scroll thumb */
+    border-radius: 20px;
+    border: 1px solid violet; 
+  }
+
+   
   @media only screen and (max-width: 1020px) {
     .SearchResults {
       width: 90%;
       margin-bottom: 2rem;
     }
   }
+
+  @media only screen and (max-width: 400px) {
+    .SearchResults::-webkit-scrollbar-track
+  {
+    border: 0px transparent;
+    border-color: black;
+    background-color: #b2bec3;
+  }
+  
+  .SearchResults::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #dfe6e9;
+    display: none;
+  }
+  
+  .SearchResults::-webkit-scrollbar-thumb
+  {
+    display: none; 
+  }
+  }
+
+  body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  body::-webkit-scrollbar-track {
+    
+    background: grey;        /* color of the tracking area */
+  }
+  body::-webkit-scrollbar-thumb {
+    
+    background-color: rgba(213, 2, 255, 0.658);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid violet; /* creates padding around scroll thumb*/
+  }
+  

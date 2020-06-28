@@ -73,7 +73,7 @@ h2 {
   background-image: url('./background_photo_desktop.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   color: #fff;
@@ -84,6 +84,12 @@ h2 {
   justify-content: space-between;
   width: 100%;
 }
+
+.notify {
+  margin-left: 0px;
+  position: fixed;
+}
+
 
 @media only screen and (max-width: 1020px) {
   .App-playlist {
@@ -99,3 +105,9 @@ h1 img {
   width: 40px;
   align-self: bottom;
 }
+
+h1 {
+  position: fixed;
+  width: 100%;
+}
+

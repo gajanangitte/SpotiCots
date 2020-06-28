@@ -1,6 +1,6 @@
 const clientId = '19320e54eadf4442b2e7d2b70a0fbc82';
-const redirectURI = 'http://localhost:3000/'
-// const redirectURI = 'http://spoti-cots_by_apricot.surge.sh';
+// const redirectURI = 'http://localhost:3000/'
+const redirectURI = 'http://spoti-cots_by_apricot.surge.sh';
 
 let userAccessToken;
 let Spotify = {
@@ -73,29 +73,87 @@ let Spotify = {
                     if(!jsonResponse.artists) {
                     return [];
                     }
-                
-                    let artistID = jsonResponse.artists.items[0].uri;
-                    let artistURI = artistID.split(':');
-                    // console.log(artistURI);
+                    
 
-                    console.log(accessToken);
-                    return fetch(`https://api.spotify.com/v1/artists/`+artistURI[2]+`/top-tracks?country=IN`,
-                     {
-                        headers: { Authorization: `Bearer ${accessToken}`}
-                    }).then ( response2 => {
-                        return response2.json();
+                        let artistID = jsonResponse.artists.items[0].uri;
+                        let artistURI = artistID.split(':');
+                        // console.log(artistURI);
+                        return fetch(`https://api.spotify.com/v1/artists/`+artistURI[2]+`/top-tracks?country=IN`,
+                        {
+                            headers: { Authorization: `Bearer ${accessToken}`}
+                        }).then ( response2 => {
+                            return response2.json();
 
-                        }).then( responseJSON => {
+                            }).then( responseJSON => {
+                                console.log(responseJSON);
+                                if(!responseJSON.tracks) {
+                                    return [];
+                                }
 
-                            if(!responseJSON.tracks) {
-                                return [];
-                            }
+                                return responseJSON.tracks.map( track => {
+                                    return {
+                                        id: track.id,
+                                        name: track.name,
+                                        artist: track.artists[0].name,
+                                        album: track.album.name,
+                                        uri: track.uri, 
+                                        }
+                                    });    
+                        });
 
-
-
-                        })
+    
+                        
+                    
             });
         };
+
+        if(type === 'album') {
+
+            return fetch(`https://api.spotify.com/v1/search?type=${type}&q=${term}`,
+            {
+                headers: { Authorization: `Bearer ${accessToken}`}
+            }).then( response => {
+                // console.log(response);
+                return response.json();
+            }).then( jsonResponse => {
+                    console.log(jsonResponse);
+                    if(!jsonResponse.albums.items) {
+                    return [];
+                    }
+                        // console.log(jsonResponse.albums.items[0].id)
+                        let items = jsonResponse.albums.items;
+                        console.log(items.length);
+                        for(let i=0; i < items.length; i++) {
+                            return fetch(`https://api.spotify.com/v1/albums/${items[i].id}/tracks`, 
+                                {
+                                    headers: { Authorization: `Bearer ${accessToken}`}
+                                }).then( response => {
+                                    return response.json();
+                                }).then(JSONResponse => {
+
+                                    console.log(JSONResponse);
+
+                                    return JSONResponse.items.map( track => {
+
+                                        return {
+                                            id: track.id,
+                                            name: track.name,
+                                            artist: track.artists[0].name,
+                                            album: items[0].name,
+                                            uri: track.uri, 
+                                            }
+                                        });
+
+
+                                });
+                        }
+                    
+                    });
+                
+        }
+            
+        
+        
 
     }, 
      savePlaylist(name , trackURIs) {

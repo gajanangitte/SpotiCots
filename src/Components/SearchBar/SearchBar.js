@@ -1,6 +1,8 @@
 import React from 'react';
 import './SearchBar.css';
 import './SearchBar.scss';
+import ReactNotification from 'react-notifications-component';
+
 
 export class SearchBar extends React.Component {
 
@@ -13,6 +15,7 @@ export class SearchBar extends React.Component {
       }
 
       this.search = this.search.bind(this);
+      this.searchPress = this.searchPress.bind(this); 
       this.handleTermChange = this.handleTermChange.bind(this);
       this.handleTypeChange = this.handleTypeChange.bind(this);
     }
@@ -28,6 +31,13 @@ export class SearchBar extends React.Component {
       this.props.onSearch(this.state.term, this.state.type);
     }
 
+    searchPress(event) {
+      console.log(event.key);
+      if(event.key === "Enter") {
+        this.props.onSearch(this.state.term, this.state.type);
+      }
+    }
+
     handleTermChange(event) {
       this.setState({term: event.target.value})
     }
@@ -39,9 +49,9 @@ export class SearchBar extends React.Component {
 
     render() {
         return (
-        <div className="SearchBar">
+        <div className="SearchBar" id="SearchBar">
           <strong> Search Term: </strong><br/>
-        <input placeholder="Enter A Song, Artist, or Album" onChange={this.handleTermChange}/>
+        <input placeholder="Search" onChange={this.handleTermChange}  onKeyPress={this.searchPress}/>
            <strong> Search Type: </strong>
         <form>    
           <div className="radio-group">
@@ -52,7 +62,11 @@ export class SearchBar extends React.Component {
         </form>
 
         <button className="SearchButton" onClick={this.search}>SEARCH</button>
+        
+          <ReactNotification/>
+        
       </div>)
     }
 
 }
+

@@ -7,6 +7,7 @@ import {SearchResults} from "../SearchResults/SearchResults"
 import {Playlist} from "../Playlist/Playlist"
 
 import Spotify from "../../utils/Spotify";
+import Notification from '../../utils/Notification';
 
 class App extends React.Component {
 
@@ -54,13 +55,18 @@ class App extends React.Component {
 
   savePlaylist() {
     let TrackURIs = this.state.playlistTracks.map( track => track.uri );
+    if(TrackURIs.length === 0) {
+      return Notification("Woah! Empty Playlist!", `Empty Playlist: ${this.state.playlistName} cannot be added to your Spotify Account`, "info");    
+    }
+
     Spotify.savePlaylist(this.state.playlistName, TrackURIs).then(() => {
-      alert('Playlist Created')
       this.setState({
         playlistName: 'New Playlist',
         playlistTracks: [],
       })
-    })
+    });
+    Notification("Playlist Succesfully Added", `Playlist: ${this.state.playlistName} added to your Spotify Account`, "success");
+
   }
 
   search(term, type) {
@@ -80,8 +86,12 @@ class App extends React.Component {
           <div>
             <h1> <img src="./logo.png" alt="logo" />Spoti<span className="highlight">Cots</span></h1>
             <div className="App">
+              
+                
+
               <SearchBar 
                 onSearch={this.search}/>
+                
               <div className="App-playlist">
               <SearchResults 
                 searchResults={this.state.searchResults}

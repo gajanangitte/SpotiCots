@@ -40,13 +40,29 @@
     background-color: rgba(108, 65, 233, .7);
   }
   
-  ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
+  .Playlist::-webkit-scrollbar-track
+  {
+    border: 3px solid white;
+    border-color: black;
+    background-color: #b2bec3;
+  }
+  
+  .Playlist::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #dfe6e9;
+  }
+  
+  .Playlist::-webkit-scrollbar-thumb
+  {
+    background-color: rgba(213, 2, 255, 0.658);    /* color of the scroll thumb */
+    border-radius: 20px;
+    border: 1px solid violet; 
   }
   
   @media only screen and (max-width: 1020px) {
     .Playlist {
       width: 90%;
+      height: 600px;
     }
   }

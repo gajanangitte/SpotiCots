@@ -1,6 +1,6 @@
 import React from 'react';
 import './Track.css'
-
+import Notification from '../../utils/Notification';
 class Track extends React.Component {
   
   constructor(props) {
@@ -22,11 +22,14 @@ class Track extends React.Component {
 
   addTrack() {
     this.props.onAdd(this.props.track);
+    Notification("New Song Added", `Song: ${this.props.track.name} added to Playlist`, "success");
   }
 
   removeTrack() {
     if(this.props.onRemove){
     this.props.onRemove(this.props.track);
+    Notification("Song Succesfully Removed", `Song: ${this.props.track.name} removed from Playlist`, "warning");
+
   }
   else {
     
@@ -35,12 +38,15 @@ class Track extends React.Component {
   }
   
   render() {
-        return (<div className="Track">
-        <div className="Track-information">
-          <h3>{this.props.track.name}</h3>
-          <p>{this.props.track.artist} | {this.props.track.album} </p>
-        </div>
-        {this.renderAction()}
+        return (
+        <div className="Track">
+            
+            <div className="Track-information">
+              <h3>{this.props.track.name}</h3>
+              <p>{this.props.track.artist} | {this.props.track.album} </p>
+            </div>
+            {this.renderAction()}
+        
         </div>)
     }
 }
