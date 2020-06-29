@@ -3,6 +3,9 @@ import './SearchBar.css';
 import './SearchBar.scss';
 import ReactNotification from 'react-notifications-component';
 import Input from 'react-fancy-input'
+import Spotify from '../../utils/Spotify';
+import Notification from '../../utils/Notification';
+
 
 export class SearchBar extends React.Component {
 
@@ -21,20 +24,21 @@ export class SearchBar extends React.Component {
     }
 
     componentDidMount() {
-      setTimeout( () => {
-          this.search();
-      }, 1000 );
-      
+      Spotify.getAccessToken();
     }
 
     search() {
       this.props.onSearch(this.state.term, this.state.type);
+      Notification("Search Results Fetched", `The Search results for ${this.state.type.toUpperCase()}: ${this.state.term} have been fetched`, "warning");
+
     }
 
     searchPress(event) {
       console.log(event.key);
       if(event.key === "Enter") {
         this.props.onSearch(this.state.term, this.state.type);
+        Notification("Search Results Fetched", `The Search results for ${this.state.type.toUpperCase()}: ${this.state.term} have been fetched`, "warning");
+
       }
     }
 

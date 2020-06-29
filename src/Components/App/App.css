@@ -71,7 +71,8 @@ h2 {
   height: 100% 100%;
   padding: 0 17% 10% 17%;
   background-image: url('./background_photo_desktop.jpg');
-  /* background-size: 100% 100%; */
+  background-size: 100% 100%;
+  /* position: relative; */
   background-position: top;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -101,7 +102,7 @@ h1 img {
 }
 
 h1 {
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
 }
 
@@ -114,14 +115,15 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 700px) {
   
   h1 {
     background-color: rgba(126, 24, 185, 0.5);
     border: 2px solid black;
     border-bottom: 4px solid greenyellow;
     text-shadow: 0 0 3px black, 0 0 5px black;
-    opacity: 100%;
+    position: fixed;
+    z-index: 200;
   }
 
   h1 img {

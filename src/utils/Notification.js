@@ -9,7 +9,7 @@ let Notification = (title, message, type ) => {
         title: title,
         message: message,
         type: type,
-        container: "top-left",
+        container: "top-center",
         insert: "top",
         animationIn: ['animated', 'fadeIn'],
         animationOut: ['animated', 'fadeOut'],
